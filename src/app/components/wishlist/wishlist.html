@@ -1,0 +1,13 @@
+@if (wishlist.length > 0) {
+  @for (movie of wishlist; track movie.id) {
+    <div class="movie-card">
+      <img [src]="movie.poster" [alt]="movie.title">
+      <h3>{{ movie.title }}</h3>
+      <button (click)="remove(movie.id)">
+        Remove
+      </button>
+    </div>
+  }
+} @else {
+  <h3>Your wishlist is empty</h3>
+}

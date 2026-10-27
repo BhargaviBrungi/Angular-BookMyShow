@@ -13,12 +13,14 @@ import { Plays } from './components/plays/plays';
 import { Sports } from './components/sports/sports';
 import { Activities } from './components/activities/activities';
 import { authGuard } from './guards/auth.guard';
+import { Wishlist } from './components/wishlist/wishlist';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'movies', component: MovieList },
   { path: 'movies/:id', component: MovieDetail },
   { path: 'movies/:id/book', component: SeatSelectionComponent, canActivate: [authGuard] },
+  { path:'wishlist',component:Wishlist},
   { path: 'events', component: EventList },
   { path: 'stream', component: Stream },
   { path: 'plays', component: Plays },

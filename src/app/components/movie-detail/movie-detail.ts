@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MovieService } from '../../services/movie-service';
 import { Movie } from '../../data/movies.data';
+import { WishlistService } from '../../services/wishlist-service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -28,7 +29,7 @@ export class MovieDetail implements OnInit {
     12: { description: 'Article 370 depicts the abrogation of Article 370 and the events leading up to it.', duration: '2h 38m', director: 'Aditya Suhas Jambhale', cast: ['Yami Gautam', 'Priyamani', 'Arun Govil'] },
   };
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) {}
+  constructor(private route: ActivatedRoute, private movieService: MovieService,private wishlistService: WishlistService) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -45,4 +46,10 @@ export class MovieDetail implements OnInit {
       .filter(m => m.id !== this.movie!.id && m.genre.some(g => this.movie!.genre.includes(g)))
       .slice(0, 5);
   }
+
+  addToWishlist(movie: any) {
+    this.wishlistService.addToWishlist(movie);
+    alert('Movie added to wishlist');
 }
+}
+
